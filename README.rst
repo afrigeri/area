@@ -29,6 +29,9 @@ Simply pass a geojson string or python dictionary to the area function and get t
   >>> obj = {'type':'Polygon','coordinates':[[[-180,-90],[-180,90],[180,90],[180,-90],[-180,-90]]]}
   >>> area(obj)
   511207893395811.06
+  >>> moon_radius=1737400
+  >>> area(obj,moon_radius)
+  37932328099380.46
 
 Test
 ----
