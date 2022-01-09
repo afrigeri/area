@@ -5,7 +5,7 @@ from math import pi, sin
 
 __version__ = '1.1.1'
 WGS84_RADIUS = 6378137
-
+PLANETARY_RADIUS = WGS84_RADIUS
 
 def rad(value):
     return value * pi / 180
@@ -53,7 +53,7 @@ def ring__area(coordinates):
 
             _area += (rad(p3[0]) - rad(p1[0])) * sin(rad(p2[1]))
 
-        _area = _area * WGS84_RADIUS * WGS84_RADIUS / 2
+        _area = _area * PLANETARY_RADIUS * PLANETARY_RADIUS / 2
 
     return _area
 
@@ -72,7 +72,12 @@ def polygon__area(coordinates):
     return _area
 
 
-def area(geometry):
+def area(geometry,RADIUS=None):
+    global PLANETARY_RADIUS
+    if RADIUS:
+        PLANETARY_RADIUS=RADIUS
+    else:
+        PLANETARY_RADIUS=WGS84_RADIUS
 
     if isinstance(geometry, str):
         geometry = json.loads(geometry)
